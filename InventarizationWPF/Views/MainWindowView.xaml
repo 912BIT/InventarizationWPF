@@ -3,10 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:InventarizationWPF"
         mc:Ignorable="d"
         Title="Инвентаризация офисного оборудования" Height="450" Width="800" Background="White">
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/MainWindowViewStyle.xaml" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Style="{StaticResource stackpanel-navigation-style}">
+
+            <Button Template="{StaticResource button-navigation-template}"
+                    Style="{StaticResource button-navigation-style}"
+                    Command="{Binding SelectViewModelCommand}"
+                    CommandParameter="Warehouse">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Solid_Warehouse" Style="{StaticResource fa-imageawesome-style}" />
+                    <TextBlock Text="Склад" Style="{StaticResource textblock-style}"/>
+                </StackPanel>
+            </Button>
+
+            <Button Template="{StaticResource button-navigation-template}"
+                    Style="{StaticResource button-navigation-style}"
+                    Command="{Binding SelectViewModelCommand}"
+                    CommandParameter="Inventory">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Solid_CheckSquare" Style="{StaticResource fa-imageawesome-style}" />
+                    <TextBlock Text="Инвентаризация" Style="{StaticResource textblock-style}" />
+                </StackPanel>
+            </Button>
+            
+        </StackPanel>
     </Grid>
 </Window>
