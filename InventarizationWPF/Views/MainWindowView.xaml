@@ -24,7 +24,7 @@
                     CommandParameter="Warehouse">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Solid_Warehouse" Style="{StaticResource fa-imageawesome-style}" />
-                    <TextBlock Text="Склад" Style="{StaticResource textblock-style}"/>
+                    <TextBlock Text="Офис" Style="{StaticResource textblock-style}"/>
                 </StackPanel>
             </Button>
 
