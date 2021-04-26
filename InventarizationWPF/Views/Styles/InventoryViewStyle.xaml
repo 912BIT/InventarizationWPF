@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:InventarizationWPF.Views.Styles">
+
+
+    <Style x:Key="textblock-header" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="textblock-top" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Width" Value="170" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="button-standart" TargetType="Button">
+        <Setter Property="Width" Value="100" />
+    </Style>
+
+    <Style x:Key="button-bottom" TargetType="Button">
+        <Setter Property="Width" Value="90" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
+</ResourceDictionary>
