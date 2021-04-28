@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace InventarizationWPF.Views
 {
     /// <summary>
-    /// Interaction logic for InventoryView.xaml
+    /// Interaction logic for InventorysView.xaml
     /// </summary>
-    public partial class InventoryListView : UserControl
+    public partial class InventorysView : UserControl
     {
-        public InventoryListView()
+        public InventorysView()
         {
             InitializeComponent();
         }
