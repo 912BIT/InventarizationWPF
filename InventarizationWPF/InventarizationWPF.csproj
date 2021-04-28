@@ -73,6 +73,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\InventarizationContext.cs" />
     <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Services\ICloseable.cs" />
     <Compile Include="ViewModels\AddEquipmentWindowViewModel.cs" />
     <Compile Include="ViewModels\OfficeViewModel.cs" />
     <Compile Include="Views\AddEquipmentWindowView.xaml.cs">
@@ -118,6 +119,10 @@
     <Page Include="Views\OfficeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\AddEquipmentWindowViewStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Styles\InventoryListViewStyle.xaml">
       <SubType>Designer</SubType>

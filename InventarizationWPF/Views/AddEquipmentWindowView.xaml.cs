@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarizationWPF.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace InventarizationWPF.Views
     /// </summary>
     public partial class AddEquipmentWindowView : Window
     {
-        public AddEquipmentWindowView()
+        public AddEquipmentWindowView(ICloseable context)
         {
             InitializeComponent();
+            context.CloseRequest += (s, e) => this.Close();
         }
+
     }
 }

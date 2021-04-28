@@ -5,7 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventarizationWPF.Views"
         mc:Ignorable="d"
-        Title="Добавление оборудования" Height="200" Width="400">
+        xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
+        Title="Добавление оборудования" Height="200" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:AddEquipmentWindowViewModel />
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/AddEquipmentWindowViewStyle.xaml" />
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -14,24 +24,25 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Наименование:" />
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Количество:" />
-        <TextBlock Grid.Row="2" Grid.Column="0" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Цена (руб):" />
-        <TextBlock Grid.Row="3" Grid.Column="0" Margin="10, 0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Сумма (руб):" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource textblock-standart}" Text="Наименование:" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource textblock-standart}" Text="Количество:" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource textblock-standart}" Text="Цена (руб):" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource textblock-standart}" Foreground="#FF494949" Text="Сумма (руб):" />
 
-        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10, 0"/>
-        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10, 0"/>
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10, 0"/>
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10, 0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource textbox-standart}" Text="{Binding Name}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource textbox-standart}" Text="{Binding Count}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource textbox-standart}" Text="{Binding Price}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" IsReadOnly="True" Foreground="#FF494949" Style="{StaticResource textbox-standart}" Text="{Binding Sum}"/>
 
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Добавить" Width="70" VerticalAlignment="Center"/>
-            <Button Content="Отмена"   Width="70" VerticalAlignment="Center" Margin="10, 0"/>
+            <Button Content="Добавить" Width="70" VerticalAlignment="Center" Command="{Binding AddEquipmentCommand}"/>
+            <Button Content="Отмена"   Width="70" VerticalAlignment="Center" Margin="10, 0" Command="{Binding CloseViewModelCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
