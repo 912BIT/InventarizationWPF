@@ -26,7 +26,7 @@ namespace InventarizationWPF.ViewModels
         /// <returns></returns>
         protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string property = null)
         {
-            if (field.Equals(value)) return false;
+            if (field != null && field.Equals(value)) return false;
             field = value;
             OnPropertyChanged(property);
             return true;

@@ -30,5 +30,9 @@
             Price = price;
             Sum = sum;
         }
+
+        public Equipment()
+        {
+        }
     }
 }

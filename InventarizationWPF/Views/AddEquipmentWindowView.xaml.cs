@@ -1,4 +1,5 @@
 ﻿using InventarizationWPF.Services;
+using InventarizationWPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace InventarizationWPF.Views
     /// </summary>
     public partial class AddEquipmentWindowView : Window
     {
-        public AddEquipmentWindowView(ICloseable context)
+        public AddEquipmentWindowView()
         {
             InitializeComponent();
-            context.CloseRequest += (s, e) => this.Close();
+            ((AddEquipmentWindowViewModel)this.DataContext).CloseRequest += (s, e) => this.Close();
         }
 
     }

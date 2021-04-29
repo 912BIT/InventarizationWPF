@@ -4,12 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InventarizationWPF.Views"
+             xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="600" Background="White">
     
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/OfficeViewStyle.xaml" />
     </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vm:OfficeViewModel/>
+    </UserControl.DataContext>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -20,19 +25,19 @@
 
         <TextBlock Grid.Row="0" Text="Оборудование" Style="{StaticResource textblock-header}"/>
 
-        <DataGrid Grid.Row="1" Style="{StaticResource datagrid-equipment}">
+        <DataGrid Grid.Row="1" Style="{StaticResource datagrid-equipment}" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="N" Width="45"/>
-                <DataGridTextColumn Header="Наименование" Width="2*"/>
-                <DataGridTextColumn Header="Количество" Width="*"/>
-                <DataGridTextColumn Header="Цена" Width="*"/>
-                <DataGridTextColumn Header="Сумма" Width="*"/>
+                <DataGridTextColumn Header="N" Width="45" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Наименование" Width="2*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Количество" Width="*" Binding="{Binding Count}"/>
+                <DataGridTextColumn Header="Цена" Width="*" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="Сумма" Width="*" Binding="{Binding Sum}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Добавить" Margin="10, 8" Style="{StaticResource button-bottom}"/>
-            <Button Content="Изменить" Margin="0, 8, 10, 8" Style="{StaticResource button-bottom}"/>
+            <Button Content="Добавить" Margin="10, 8" Style="{StaticResource button-bottom}" Command="{Binding AddEquipmentCommand}"/>
+            <Button Content="Изменить" Margin="0, 8, 10, 8" Style="{StaticResource button-bottom}" Command="{Binding EditEquipmentCommand}"/>
             <Button Content="Удалить" Margin="0, 8" Style="{StaticResource button-bottom}"/>
         </StackPanel>
     </Grid>
