@@ -9,8 +9,10 @@ namespace InventarizationWPF.ViewModels
     {
         #region Выбранная вью-модель
 
-        private ViewModel _currentViewModel;
+        /// <summary>Выбранная вью-модель</summary>
+        private ViewModel _currentViewModel = new ViewModel();
 
+        /// <summary>Выбранная вью-модель</summary>
         public ViewModel CurrentViewModel
         {
             get => _currentViewModel;
@@ -21,7 +23,10 @@ namespace InventarizationWPF.ViewModels
 
         #region Список доступных вью-моделей
 
-        private List<ViewModel> _viewModelsList;
+        /// <summary>Список доступных вью-моделей</summary>
+        private List<ViewModel> _viewModelsList = new List<ViewModel>();
+
+        /// <summary>Список доступных вью-моделей</summary>
         public List<ViewModel> ViewModelsList
         {
             get => _viewModelsList;
@@ -32,21 +37,31 @@ namespace InventarizationWPF.ViewModels
 
         #region Команды
 
+        /// <summary>Изменяет текущую вью-модель</summary>
         public ICommand SelectViewModelCommand { get; set; }
 
+        /// <summary>Изменяет текущую вью-модель</summary>
         private void OnSelectViewModelCommandExecute(object parameter)
         {
-            ViewModel selectedViewModel = ViewModelsList.FirstOrDefault(vm => nameof(vm) == parameter.ToString());
-            CurrentViewModel = selectedViewModel;
+            CurrentViewModel = ViewModelsList.Where(vm => vm.GetType().Name.Contains(parameter.ToString())).First();
         }
 
+        /// <summary>Проверяет можно ли изменить текущую вью-модель</summary>
         private bool CanSelectViewModelCommandExecuted(object parameter) => true;
 
         #endregion
 
+        /// <summary>Инициализирует доступные вью-модели</summary>
+        public void InitViewModels()
+        {
+            ViewModelsList.Add(new OfficeViewModel());
+            CurrentViewModel = ViewModelsList.Where(vm => vm.GetType().Name.Contains("OfficeViewModel")).First();
+        }
 
+        /// <summary>Инициализирует вью-модель главного окна</summary>
         public MainWindowViewModel()
         {
+            InitViewModels();
             SelectViewModelCommand = new RelayCommand(OnSelectViewModelCommandExecute, CanSelectViewModelCommandExecuted);
         }
 

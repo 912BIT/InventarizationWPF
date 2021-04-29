@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:InventarizationWPF"
+        xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
         mc:Ignorable="d"
         Title="Инвентаризация офисного оборудования" Height="450" Width="800" Background="White">
     <Window.Resources>
         <ResourceDictionary Source="Styles/MainWindowViewStyle.xaml" />
     </Window.Resources>
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -21,7 +27,7 @@
             <Button Template="{StaticResource button-navigation-template}"
                     Style="{StaticResource button-navigation-style}"
                     Command="{Binding SelectViewModelCommand}"
-                    CommandParameter="Warehouse">
+                    CommandParameter="OfficeViewModel">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Solid_Warehouse" Style="{StaticResource fa-imageawesome-style}" />
                     <TextBlock Text="Офис" Style="{StaticResource textblock-style}"/>
@@ -31,7 +37,7 @@
             <Button Template="{StaticResource button-navigation-template}"
                     Style="{StaticResource button-navigation-style}"
                     Command="{Binding SelectViewModelCommand}"
-                    CommandParameter="Inventory">
+                    CommandParameter="InventoryListViewModel">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Solid_CheckSquare" Style="{StaticResource fa-imageawesome-style}" />
                     <TextBlock Text="Инвентаризация" Style="{StaticResource textblock-style}" />
@@ -39,5 +45,7 @@
             </Button>
             
         </StackPanel>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
