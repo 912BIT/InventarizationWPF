@@ -4,7 +4,9 @@ using InventarizationWPF.Models;
 using InventarizationWPF.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace InventarizationWPF.ViewModels
@@ -93,12 +95,49 @@ namespace InventarizationWPF.ViewModels
         }
         #endregion
 
+        #region Удаление оборудования
+
+        /// <summary>Вызывает окно для удаления оборудования</summary>
+        public ICommand RemoveEquipmentCommand { get; set; }
+
+        /// <summary>Вызывает окно для удаления оборудования</summary>
+        private void OnRemoveEquipmentCommandExecute(object parameter)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show("Вы действительно хотите удалить оборудование?", "Удаление оборудования", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (dialogResult == MessageBoxResult.OK)
+            {
+                using (InventarizationContext db = new InventarizationContext())
+                {
+                    if (SelectedEquipment != null)
+                    {
+                        db.Entry(SelectedEquipment).State = EntityState.Deleted;
+                        db.Equipment.Remove(SelectedEquipment);
+                        db.SaveChanges();
+                    }
+                }
+                LoadEquipment();
+            }
+        }
+
+        /// <summary>Проверяет можно ли вызывать окно для изменения оборудования</summary>
+        private bool CanRemoveEquipmentCommandExecuted(object parameter)
+        {
+            if (SelectedEquipment == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        #endregion
+
         #endregion
 
         private void InitCommands()
         {
             AddEquipmentCommand = new RelayCommand(OnAddEquipmentCommandExecute, CanAddEquipmentCommandExecuted);
             EditEquipmentCommand = new RelayCommand(OnEditEquipmentCommandExecute, CanEditEquipmentCommandExecuted);
+            RemoveEquipmentCommand = new RelayCommand(OnRemoveEquipmentCommandExecute, CanRemoveEquipmentCommandExecuted);
         }
 
         private void LoadEquipment()

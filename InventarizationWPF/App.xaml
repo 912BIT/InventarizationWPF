@@ -6,9 +6,18 @@
              xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
              StartupUri="Views/MainWindowView.xaml">
     <Application.Resources>
+        
         <DataTemplate DataType="{x:Type vm:OfficeViewModel}">
             <views:OfficeView/>
         </DataTemplate>
-       
+
+        <DataTemplate DataType="{x:Type vm:InventoryListViewModel}">
+            <views:InventoryListView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
+            <views:InventoryView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

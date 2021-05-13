@@ -38,7 +38,7 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button Content="Добавить" Margin="10, 8" Style="{StaticResource button-bottom}" Command="{Binding AddEquipmentCommand}"/>
             <Button Content="Изменить" Margin="0, 8, 10, 8" Style="{StaticResource button-bottom}" Command="{Binding EditEquipmentCommand}"/>
-            <Button Content="Удалить" Margin="0, 8" Style="{StaticResource button-bottom}"/>
+            <Button Content="Удалить" Margin="0, 8" Style="{StaticResource button-bottom}" Command="{Binding RemoveEquipmentCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

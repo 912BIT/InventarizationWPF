@@ -75,6 +75,9 @@
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Services\ICloseable.cs" />
     <Compile Include="ViewModels\AddEquipmentWindowViewModel.cs" />
+    <Compile Include="ViewModels\InventoryListViewModel.cs" />
+    <Compile Include="ViewModels\InventoryViewAddEquipmentWindowViewModel.cs" />
+    <Compile Include="ViewModels\InventoryViewModel.cs" />
     <Compile Include="ViewModels\OfficeViewModel.cs" />
     <Compile Include="Views\AddEquipmentWindowView.xaml.cs">
       <DependentUpon>AddEquipmentWindowView.xaml</DependentUpon>
@@ -84,6 +87,9 @@
     </Compile>
     <Compile Include="Views\InventoryView.xaml.cs">
       <DependentUpon>InventoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventoryViewAddEquipmentWindow.xaml.cs">
+      <DependentUpon>InventoryViewAddEquipmentWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OfficeView.xaml.cs">
       <DependentUpon>OfficeView.xaml</DependentUpon>
@@ -97,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InventoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InventoryViewAddEquipmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
