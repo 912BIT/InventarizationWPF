@@ -55,6 +55,8 @@ namespace InventarizationWPF.ViewModels
         public void InitViewModels()
         {
             ViewModelsList.Add(new OfficeViewModel());
+            ViewModelsList.Add(new InventoryListViewModel());
+            ViewModelsList.Add(new InventoryViewModel());
             CurrentViewModel = ViewModelsList.Where(vm => vm.GetType().Name.Contains("OfficeViewModel")).First();
         }
 

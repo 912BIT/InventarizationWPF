@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarizationWPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,25 @@ namespace InventarizationWPF.Views
         public InventoryView()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var vm = ((InventoryViewModel)this.DataContext);
+
+            if (vm.Equipments.Count > 0)
+            {
+                int inventarizationSumActual = 0;
+                int inventarizationSum = 0;
+                foreach (var equipment in vm.Equipments)
+                {
+                    inventarizationSumActual += equipment.SumActual;
+                    inventarizationSum += equipment.Sum;
+                }
+
+                vm.InventarizationSum = inventarizationSum;
+                vm.InventarizationSumActual = inventarizationSumActual;
+            }
         }
     }
 }

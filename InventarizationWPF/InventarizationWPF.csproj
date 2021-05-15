@@ -72,15 +72,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\InventarizationContext.cs" />
+    <Compile Include="Infrastructure\Converters\SumActualConverter.cs" />
+    <Compile Include="Infrastructure\FullyObservableCollection.cs" />
     <Compile Include="Models\Equipment.cs" />
+    <Compile Include="Models\Inventarization.cs" />
+    <Compile Include="Models\InventarizationEquipment.cs" />
     <Compile Include="Services\ICloseable.cs" />
     <Compile Include="ViewModels\AddEquipmentWindowViewModel.cs" />
+    <Compile Include="ViewModels\InventarizationBrowsingWindowViewModel.cs" />
     <Compile Include="ViewModels\InventoryListViewModel.cs" />
     <Compile Include="ViewModels\InventoryViewAddEquipmentWindowViewModel.cs" />
     <Compile Include="ViewModels\InventoryViewModel.cs" />
     <Compile Include="ViewModels\OfficeViewModel.cs" />
     <Compile Include="Views\AddEquipmentWindowView.xaml.cs">
       <DependentUpon>AddEquipmentWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InventarizationBrowsingWindowView.xaml.cs">
+      <DependentUpon>InventarizationBrowsingWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InventoryListView.xaml.cs">
       <DependentUpon>InventoryListView.xaml</DependentUpon>
@@ -95,6 +103,10 @@
       <DependentUpon>OfficeView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AddEquipmentWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InventarizationBrowsingWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

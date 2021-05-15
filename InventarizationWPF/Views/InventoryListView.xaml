@@ -4,12 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:InventarizationWPF.Views"
+             xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
     <UserControl.Resources>
         <ResourceDictionary Source="Styles/InventoryListViewStyle.xaml" />
     </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vm:InventoryListViewModel />
+    </UserControl.DataContext>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -20,12 +25,20 @@
 
         <TextBlock Grid.Row="0" Text="Инвентаризация оборудования" Style="{StaticResource textblock-header}"/>
 
-        <ListBox Grid.Row="1" Style="{StaticResource listbox-inventory-list}" />
+        <DataGrid Grid.Row="1" Margin="10" FontSize="14" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Inventarizations}" SelectedItem="{Binding SelectedInventarization}" HorizontalGridLinesBrush="#bfbfbf" RowBackground="#DCDCDC" AlternatingRowBackground="White" SelectionUnit="FullRow">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="170" Header="Номер инвентаризации" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Дата инвентаризации" Binding="{Binding Date}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Ответственное лицо" Binding="{Binding ResponsiblePerson}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Сумма факт" Binding="{Binding SumActual}" IsReadOnly="True"/>
+                <DataGridTextColumn Width="*" Header="Сумма учёт" Binding="{Binding Sum}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button Content="Добавить" Margin="10, 8" Style="{StaticResource button-bottom}"/>
-            <Button Content="Изменить" Margin="0, 8, 10, 8" Style="{StaticResource button-bottom}"/>
-            <Button Content="Удалить" Margin="0, 8" Style="{StaticResource button-bottom}"/>
+            <Button Content="Добавить" Margin="10, 8" Style="{StaticResource button-bottom}" Command="{Binding DataContext.SelectViewModelCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="InventoryViewModel"/>
+            <Button Content="Удалить" Margin="0, 8, 10, 8" Style="{StaticResource button-bottom}" Command="{Binding RemoveInventarizationCommand}"/>
+            <Button Visibility="Hidden" Content="Просмотреть" Margin="0, 8" Width="100" Style="{StaticResource button-bottom}" Command="{Binding BrowseInventarizationCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

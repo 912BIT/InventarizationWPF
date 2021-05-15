@@ -14,5 +14,8 @@ namespace InventarizationWPF.Data
 
         /// <summary>Список оборудования</summary>
         public DbSet<Equipment> Equipment { get; set; }
+
+        /// <summary>Список Инвентаризаций</summary>
+        public DbSet<Inventarization> Inventarizations { get; set; }
     }
 }
