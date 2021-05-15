@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:InventarizationWPF.Views.Styles"
+                    xmlns:fa="http://schemas.fontawesome.com/icons/">
+    
+    <Style x:Key="fa-imageawesome-style" TargetType="fa:ImageAwesome">
+        <Setter Property="Margin" Value="20, 10, 10, 10" />
+        <Setter Property="Width" Value="30" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="Foreground" Value="#FFE8E8E8" />
+    </Style>
+    
+    <Style x:Key="textblock-style" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Width" Value="170" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="#FFE8E8E8" />
+    </Style>
+
+    <Style x:Key="stackpanel-navigation-style" TargetType="StackPanel">
+        <Setter Property="Width" Value="255" />
+        <Setter Property="Background" Value="#FF2A8AC1"/>
+    </Style>
+
+    <ControlTemplate x:Key="button-navigation-template" TargetType="Button">
+        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}" >
+            <ContentControl Content="{TemplateBinding Content}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Margin="{TemplateBinding Margin}" />
+        </Border>
+        
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1A587C" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#FF38A8E8" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+        
+    </ControlTemplate>
+
+    <Style x:Key="button-navigation-style" TargetType="Button">
+        <Setter Property="Background" Value="#FF2A8AC1" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Height" Value="65" />
+    </Style>
+</ResourceDictionary>

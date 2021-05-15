@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="InventarizationWPF.Views.InventoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:InventarizationWPF.Views"
+             xmlns:vm="clr-namespace:InventarizationWPF.ViewModels"
+             xmlns:converters="clr-namespace:InventarizationWPF.Infrastructure.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="Styles/InventoryViewStyle.xaml" />
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <vm:InventoryViewModel />
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Content="Назад" HorizontalAlignment="Left" Width="70" Margin="10, 10, 10, 5" Command="{Binding DataContext.SelectViewModelCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="InventoryListViewModel"/>
+            <TextBlock Grid.Row="1" Text="Проведение инвентаризации" Style="{StaticResource textblock-header}"/>
+        </Grid>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10, 0">
+            <TextBlock Text="Дата" Style="{StaticResource textblock-top}"/>
+            <DatePicker VerticalAlignment="Center" Height="25" SelectedDate="{Binding Date}" IsEnabled="{Binding Access}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10, 0">
+            <TextBlock Text="Ответственное лицо" Style="{StaticResource textblock-top}"/>
+            <TextBox VerticalAlignment="Center" Width="250" Height="25" Text="{Binding ResponsiblePerson}" IsEnabled="{Binding Access}"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="3" Header="Оборудование" FontSize="14" Margin="10">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Добавить" Margin="5, 10, 5, 5" Style="{StaticResource button-standart}" IsEnabled="{Binding Access}" Command="{Binding AddEquipmentCommand}"/>
+                    <Button Content="Удалить" Margin="5, 10, 0, 5" Style="{StaticResource button-standart}" IsEnabled="{Binding Access}" Command="{Binding RemoveEquipmentCommand}"/>
+                </StackPanel>
+
+                <DataGrid Margin="5" FontSize="14" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipments}" HorizontalGridLinesBrush="#bfbfbf" RowBackground="#DCDCDC" AlternatingRowBackground="White" SelectionUnit="FullRow" CellEditEnding="DataGrid_CellEditEnding" IsEnabled="{Binding Access}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="60" Header="N" Binding="{Binding Id}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Оборудование" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Кол-во факт" Binding="{Binding CountActual, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
+                        <DataGridTextColumn Width="*" Header="Кол-во учёт" Binding="{Binding Count}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Отклонение" Binding="{Binding Deviation}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Цена" Binding="{Binding Price}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Сумма факт" Binding="{Binding SumActual}" IsReadOnly="True"/>
+                        <DataGridTextColumn Width="*" Header="Сумма учёт" Binding="{Binding Sum}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </GroupBox>
+
+        <Grid Grid.Row="4" HorizontalAlignment="Right" Background="LightGray" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Сумма:" VerticalAlignment="Center" Width="100" Margin="10, 0, 0, 0"/>
+            <TextBlock Grid.Column="1" Text="{Binding InventarizationSumActual}" VerticalAlignment="Center" MinWidth="100"/>
+            <TextBlock Grid.Column="2" Text="Сумма по учёту:" VerticalAlignment="Center" Width="100" Margin="10, 0, 0, 0"/>
+            <TextBlock Grid.Column="3" Text="{Binding InventarizationSum}" VerticalAlignment="Center" MinWidth="100"/>
+        </Grid>
+
+        <Button Grid.Row="5" Content="Провести" Style="{StaticResource button-bottom}" IsEnabled="{Binding Access}" Command="{Binding SaveInventarizationCommand}"/>
+    </Grid>
+</UserControl>
